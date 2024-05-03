@@ -1,26 +1,23 @@
 package in.chandan.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-//import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-//@Entity
-@Document(collection = "menuTitle")
+@Entity
 public class MenuTitle {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String title;
     private String imageUrl;
-//    @OneToMany(mappedBy = "menuTitle", cascade = CascadeType.ALL)
-//    @JsonIgnore
+    @OneToMany(mappedBy = "menuTitle", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<MenuItems> menuItemsList;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
@@ -36,7 +33,7 @@ public class MenuTitle {
         return menuItemsList;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

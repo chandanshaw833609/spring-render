@@ -23,7 +23,6 @@ public class MenuItemController {
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public String addMenuItems(@RequestBody MenuItems item) {
         System.out.println(item.getName());
-        System.out.println(item.getMenuTitle());
         repository.save(item);
         return "Menu Item added successfully";
     }

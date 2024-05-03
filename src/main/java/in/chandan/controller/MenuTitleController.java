@@ -2,7 +2,6 @@ package in.chandan.controller;
 
 import in.chandan.entity.MenuItems;
 import in.chandan.entity.MenuTitle;
-import in.chandan.repository.MenuItemsRepository;
 import in.chandan.repository.MenuTitleRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
@@ -21,9 +20,6 @@ public class MenuTitleController {
     @Autowired
     private MenuTitleRepository menuTitleRepository;
 
-    @Autowired
-    private MenuItemsRepository menuItemsRepository;
-
     @PostMapping("/menu-titles")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
     public ResponseEntity<?> addMenuTitle(@RequestBody MenuTitle menuTitle, Principal principal) {
@@ -37,12 +33,8 @@ public class MenuTitleController {
     }
 
     @GetMapping("/{title}/menu-items")
-    public List<MenuItems> getAllMenuItems(@PathVariable String title){
-        System.out.println("My title is  : " + title);
-        List<MenuItems> list = menuItemsRepository.findByMenuItemId(title);
-//        System.out.println("Menu title is : " + menuTitle.getTitle());
-//        return menuTitle.getMenuItemsList();
-        System.out.println(list);
-        return list;
+    public List<MenuItems> getAllMenuItems(@PathVariable Long title){
+        MenuTitle menuTitle = menuTitleRepository.findById(title).orElseThrow();
+        return menuTitle.getMenuItemsList();
     }
 }

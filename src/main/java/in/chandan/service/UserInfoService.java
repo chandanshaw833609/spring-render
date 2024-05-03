@@ -49,7 +49,7 @@ public class UserInfoService implements UserDetailsService {
 		repository.save(userInfo);
 	}
 
-//	@Cacheable(cacheNames = "user", key = "#email")
+	@Cacheable(cacheNames = "user", key = "#email")
 	public UserInfo getCurrentUser(String email) {
 		return repository.findByEmail(email).get();
 	}

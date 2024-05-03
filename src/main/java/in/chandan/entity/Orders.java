@@ -1,33 +1,20 @@
 package in.chandan.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-//import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
-//@Entity
-@Document(collection = "orders")
+@Entity
 public class Orders {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
-//    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-//    @JsonIgnore
-
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
+    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+    @JsonIgnore
     private List<OrderItems> orderItemsList;
 
     public Orders() {

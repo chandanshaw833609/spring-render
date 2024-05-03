@@ -1,20 +1,17 @@
 package in.chandan.entity;
-//import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.*;
 
-//@Entity
-@Document(collection = "user")
+@Entity
 public class UserInfo { 
 
 	@Id
-//	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
+	@GeneratedValue(strategy = GenerationType.IDENTITY) 
+	private int id;
 
 	private String firstName;
 
 	private String lastName;
-//	@Column(unique = true, nullable = false)
+	@Column(unique = true, nullable = false)
 	private String email; 
 	private String password; 
 	private String roles;
@@ -23,13 +20,13 @@ public class UserInfo {
 
 	private String gender;
 
-//	@OneToOne
-//	@JoinColumn(name = "orders", referencedColumnName = "id")
+	@OneToOne
+	@JoinColumn(name = "orders", referencedColumnName = "id")
 	private Orders orders;
-	public String getId() {
+	public int getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 	public String getEmail() {

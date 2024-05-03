@@ -1,28 +1,24 @@
 package in.chandan.entity;
 
-//import jakarta.persistence.*;
+import jakarta.persistence.*;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-//@Entity
-@Document(collection = "menuItem")
+@Entity
 public class MenuItems {
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     private String price;
     private String imageUrl;
-//    @ManyToOne
-//    @JoinColumn
+    @ManyToOne
+    @JoinColumn
     private MenuTitle menuTitle;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

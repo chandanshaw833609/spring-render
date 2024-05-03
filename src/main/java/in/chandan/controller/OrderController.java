@@ -15,8 +15,6 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
-import java.util.Arrays;
-import java.util.List;
 
 @RestController
 @CrossOrigin("http://localhost:5173")
@@ -37,12 +35,12 @@ public class OrderController {
     @CachePut(cacheNames = "order-items", key = "#menuItem.id")
     public String addOrderItem(@RequestBody MenuItems menuItem, Principal principal) {
         String userEmail = principal.getName();
-        UserInfo user = this.userInfoService.getCurrentUser(userEmail);
+        UserInfo user = userInfoService.getCurrentUser(userEmail);
         OrderItems orderItem = new OrderItems();
         orderItem.setMenuItem(menuItem);
         orderItem.setQuantity(1);
         orderItem.setOrder(user.getOrders());
-        this.orderItemsRepository.save(orderItem);
+        orderItemsRepository.save(orderItem);
         return "Item added Successfully";
     }
 
@@ -52,15 +50,14 @@ public class OrderController {
     @GetMapping("/order-items")
     @PreAuthorize("hasAuthority('ROLE_USER')")
     public ResponseEntity<?> getOrderItems(Principal principal) {
-        UserInfo user = this.userInfoRepository.findByEmail(principal.getName()).orElseThrow();
-        List<OrderItems> list = orderItemsRepository.findOrderItems(user.getOrders().getId());
-        return ResponseEntity.ok(list);
+        UserInfo user = userInfoRepository.findByEmail(principal.getName()).orElseThrow();
+        return ResponseEntity.ok(user.getOrders().getOrderItemsList());
     }
 
     @DeleteMapping("/order-items/{orderItemId}")
-    public ResponseEntity<?> removeOrderItem(@PathVariable String orderItemId) {
+    public ResponseEntity<?> removeOrderItem(@PathVariable Long orderItemId) {
         try {
-            this.orderItemsRepository.deleteById(orderItemId);
+            orderItemsRepository.deleteById(orderItemId);
             return ResponseEntity.ok("Deleted successfully");
         } catch (Exception error) {
             throw error;

@@ -1,22 +1,19 @@
 package in.chandan.entity;
 
-//import jakarta.persistence.*;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+import jakarta.persistence.*;
 
-//@Entity
-@Document(collection = "orderItem")
+@Entity
 public class OrderItems {
 
     @Id
-//    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
-//    @ManyToOne
-//    @JoinColumn(name = "menu_item")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @ManyToOne
+    @JoinColumn(name = "menu_item")
     private MenuItems menuItem;
 
-//    @ManyToOne
-//    @JoinColumn(name = "order_id", referencedColumnName = "id")
+    @ManyToOne
+    @JoinColumn(name = "order_id", referencedColumnName = "id")
     private Orders order;
     private int quantity;
 
@@ -28,11 +25,11 @@ public class OrderItems {
         this.order = order;
     }
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
