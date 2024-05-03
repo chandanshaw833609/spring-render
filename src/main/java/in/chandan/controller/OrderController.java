@@ -17,7 +17,8 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 
 @RestController
-@CrossOrigin("http://localhost:5173")
+//@CrossOrigin("http://localhost:5173")
+@CrossOrigin("https://tripti-restaurant.vercel.app")
 public class OrderController {
 
     @Autowired

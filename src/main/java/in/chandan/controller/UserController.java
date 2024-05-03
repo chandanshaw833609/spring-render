@@ -19,7 +19,8 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@CrossOrigin("http://localhost:5173")
+//@CrossOrigin("http://localhost:5173")
+@CrossOrigin("https://tripti-restaurant.vercel.app")
 @RequestMapping("/auth") 
 public class UserController { 
 

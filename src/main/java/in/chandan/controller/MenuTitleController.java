@@ -15,7 +15,8 @@ import java.security.Principal;
 import java.util.List;
 
 @RestController
-@CrossOrigin("http://localhost:5173")
+//@CrossOrigin("http://localhost:5173")
+@CrossOrigin("https://tripti-restaurant.vercel.app")
 public class MenuTitleController {
     @Autowired
     private MenuTitleRepository menuTitleRepository;
