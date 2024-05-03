@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>in.chandan</groupId>
 	<artifactId>JWTAuthenticate</artifactId>
-	<version>1.0</version>
+	<version>1</version>
 	<name>JWTAuthenticate</name>
 	<description>Demo project for Spring Boot</description>
 	<properties>
