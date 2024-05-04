@@ -11,7 +11,7 @@ import java.util.List;
 
 @RestController
 //@CrossOrigin("http://localhost:5173")
-@CrossOrigin("https://tripti-restaurant.vercel.app")
+@CrossOrigin({"https://tripti-restaurant.vercel.app", "http://localhost:5173"})
 public class MenuItemController {
 
     @Autowired
